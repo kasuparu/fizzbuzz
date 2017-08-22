@@ -1,61 +1,20 @@
 'use strict';
 const Benchmark = require('benchmark');
 const suite = new Benchmark.Suite();
-const log = function () {};
+const log = function (val) { val; };
 // const log = console.log;
 const limit = 1000000;
 
 const genericFizzBuzz = function() {
     for (let i = 1; i <= limit; i++) {
-        if (i % 15 == 0)
-            log("FizzBuzz");
-        else if (i % 3 == 0)
+        if (i % 15 === 0)
+            log("FizzBuzz");k
+        else if (i % 3 === 0)
             log("Fizz");
-        else if (i % 5 == 0)
+        else if (i % 5 === 0)
             log("Buzz");
         else
             log(i);
-    }
-};
-
-const cachedFizzBuzz = function() {
-    const generateIndex = function(divisor) {
-        const index = [];
-        let n = divisor;
-        while (n <= limit) {
-            index.push(n);
-            n += divisor;
-        };
-        index.pop();
-        index.divisor = divisor;
-        index.i = 0;
-        return index;
-    };
-    const index3 = generateIndex(3);
-    const index5 = generateIndex(5);
-
-    const check = function (index, n) {
-        if (n == index[index.i]) {
-            index.i++;
-            return true;
-        }
-        return false;
-    };
-
-    let div3;
-    let div5;
-
-    for (let n = 1; n <= limit; n++) {
-        div3 = check(index3, n);
-        div5 = check(index5, n);
-        if (div3 && div5)
-            log("FizzBuzz");
-        else if (div3)
-            log("Fizz");
-        else if (div5)
-            log("Buzz");
-        else
-            log(n);
     }
 };
 
@@ -67,7 +26,7 @@ const incrementalFizzBuzz = function() {
     const index5 = generateIndex(5);
 
     const check = function (index, n) {
-        if (n == index.n) {
+        if (n === index.n) {
             index.n += index.divisor;
             return true;
         }
@@ -91,14 +50,44 @@ const incrementalFizzBuzz = function() {
     }
 };
 
-const bitwiseFizzBuzz = function() {
-    var acc = 810092048;
-    var number = 1;
+const incremental2FizzBuzz = function() {
+    let multiply3 = 3;
+    let multiply5 = 5;
+    let div3;
+    let div5;
 
-    function bitwiseFizzBuzz(i) {
-        var c = acc & 3, a = 'FizzBuzz';
+    for (let n = 1; n <= limit; n++) {
+        div3 = n === multiply3;
+        if (div3) {
+            multiply3 += 3;
+        }
+        div5 = n === multiply3;
+        if (div5) {
+            multiply5 += 5;
+        }
+
+        if (div3 && div5)
+            log("FizzBuzz");
+        else if (div3)
+            log("Fizz");
+        else if (div5)
+            log("Buzz");
+        else
+            log(n);
+    }
+};
+
+const bitwiseFizzBuzz = function() {
+    let acc = 810092048;
+    let number = 1;
+    let a;
+    let c;
+
+    while (number <= limit) {
+        c = acc & 3;
+        a = 'FizzBuzz';
         if (c === 0) {
-            a = i;
+            a = number;
         } else if (c === 1) {
             a = 'Fizz';
         } else if (c === 2) {
@@ -106,47 +95,25 @@ const bitwiseFizzBuzz = function() {
         }
 
         acc = acc >> 2 | c << 28;
-        return a;
-    }
-
-    while (number <= limit) {
-        log(bitwiseFizzBuzz(number));
+        log(a);
         number++;
     }
 };
 
-const fizzyFizzBuzz = function() {
-    function fizzy(n) {
-        if (n % 15 === 0) {
-            return "FizzBuzz";
-        }
-        if (n % 3 === 0) {
-            return "Fizz";
-        }
-        if (n % 5 === 0) {
-            return "Buzz";
-        }
-        return n.toString();
-    }
-
-    for (let i = 1; i <= limit; i++) {
-        log(fizzy(i));
-    }
-}
-
 const concatenateFizzBuzz = function() {
-    for (var i = 1; i <= limit; i++) {
-        var output = "";
+    let output;
+    for (let i = 1; i <= limit; i++) {
+        output = "";
 
-        if((i % 3) === 0){
+        if (i % 3 === 0) {
             output += "Fizz";
         }
-        if((i % 5) === 0){
+        if (i % 5 === 0) {
             output += "Buzz";
         }
 
-        if(output.length === 0){
-            output = i.toString();
+        if (output.length === 0) {
+            output = i;
         }
 
         log(output);
@@ -155,10 +122,9 @@ const concatenateFizzBuzz = function() {
 
 const results = [];
 suite.add('Generic FizzBuzz', genericFizzBuzz)
-.add('Cached FizzBuzz', cachedFizzBuzz)
 .add('Incremental FizzBuzz', incrementalFizzBuzz)
+.add('Incremental2 FizzBuzz', incremental2FizzBuzz)
 .add('Bitwise FizzBuzz', bitwiseFizzBuzz)
-.add('Fizzy FizzBuzz', fizzyFizzBuzz)
 .add('Concatenate FizzBuzz', concatenateFizzBuzz)
 .on('cycle', function(event) {
     results.push(String(event.target));
