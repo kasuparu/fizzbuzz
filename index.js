@@ -3,16 +3,48 @@ const Benchmark = require('benchmark');
 const suite = new Benchmark.Suite();
 const log = function (val) { val; };
 // const log = console.log;
+// const limit = 20;
 const limit = 1000000;
 
 const genericFizzBuzz = function() {
     for (let i = 1; i <= limit; i++) {
         if (i % 15 === 0)
-            log("FizzBuzz");k
+            log("FizzBuzz");
         else if (i % 3 === 0)
             log("Fizz");
         else if (i % 5 === 0)
             log("Buzz");
+        else
+            log(i);
+    }
+};
+
+const genericVarsFizzBuzz = function() {
+    let div3;
+    let div5;
+    for (let i = 1; i <= limit; i++) {
+        div3 = i % 3 === 0;
+        div5 = i % 5 === 0;
+        if (div3 && div5)
+            log("FizzBuzz");
+        else if (div3)
+            log("Fizz");
+        else if (div5)
+            log("Buzz");
+        else
+            log(i);
+    }
+};
+
+const genericReorderedFizzBuzz = function() {
+    for (let i = 1; i <= limit; i++) {
+        if (i % 3 === 0)
+            if (i % 5 === 0)
+                log("FizzBuzz");
+            else
+                log("Fizz");
+        else if (i % 5 === 0)
+                log("Buzz");
         else
             log(i);
     }
@@ -39,33 +71,6 @@ const incrementalFizzBuzz = function() {
     for (let n = 1; n <= limit; n++) {
         div3 = check(index3, n);
         div5 = check(index5, n);
-        if (div3 && div5)
-            log("FizzBuzz");
-        else if (div3)
-            log("Fizz");
-        else if (div5)
-            log("Buzz");
-        else
-            log(n);
-    }
-};
-
-const incremental2FizzBuzz = function() {
-    let multiply3 = 3;
-    let multiply5 = 5;
-    let div3;
-    let div5;
-
-    for (let n = 1; n <= limit; n++) {
-        div3 = n === multiply3;
-        if (div3) {
-            multiply3 += 3;
-        }
-        div5 = n === multiply3;
-        if (div5) {
-            multiply5 += 5;
-        }
-
         if (div3 && div5)
             log("FizzBuzz");
         else if (div3)
@@ -121,11 +126,12 @@ const concatenateFizzBuzz = function() {
 };
 
 const results = [];
-suite.add('Generic FizzBuzz', genericFizzBuzz)
-.add('Incremental FizzBuzz', incrementalFizzBuzz)
-.add('Incremental2 FizzBuzz', incremental2FizzBuzz)
-.add('Bitwise FizzBuzz', bitwiseFizzBuzz)
-.add('Concatenate FizzBuzz', concatenateFizzBuzz)
+suite.add('Generic', genericFizzBuzz)
+.add('Generic Variables', genericVarsFizzBuzz)
+.add('Generic Reordered', genericReorderedFizzBuzz)
+.add('Incremental', incrementalFizzBuzz)
+.add('Bitwise', bitwiseFizzBuzz)
+.add('Concatenate', concatenateFizzBuzz)
 .on('cycle', function(event) {
     results.push(String(event.target));
 })
@@ -136,6 +142,7 @@ suite.add('Generic FizzBuzz', genericFizzBuzz)
 .run();
 
 // genericFizzBuzz();
+// genericReorderedFizzBuzz();
 // cachedFizzBuzz();
 // incrementalFizzBuzz();
 // bitwiseFizzBuzz();
