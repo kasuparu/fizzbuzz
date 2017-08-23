@@ -19,6 +19,36 @@ const genericFizzBuzz = function() {
     }
 };
 
+const genericProfilerCount = {
+    count: 0,
+    for: 0,
+    div15: 0,
+    div3: 0,
+    div5: 0
+};
+const genericProfilerFizzBuzz = function() {
+    genericProfilerCount.count++;
+    for (let i = 1; i <= limit; i++) {
+        genericProfilerCount.for++;
+        genericProfilerCount.div15++;
+        if (i % 15 === 0) {
+            log("FizzBuzz");
+        } else {
+            genericProfilerCount.div3++;
+            if (i % 3 === 0) {
+                log("Fizz");
+            } else {
+                genericProfilerCount.div5++;
+                if (i % 5 === 0) {
+                    log("Buzz");
+                } else {
+                    log(i);
+                }
+            }
+        }
+    }
+};
+
 const genericVarsFizzBuzz = function() {
     let div3;
     let div5;
@@ -47,6 +77,36 @@ const genericReorderedFizzBuzz = function() {
                 log("Buzz");
         else
             log(i);
+    }
+};
+
+const genericReorderedProfilerCount = {
+    count: 0,
+    for: 0,
+    div3: 0,
+    div51: 0,
+    div52: 0
+};
+const genericReorderedFizzBuzzProfiling = function() {
+    genericReorderedProfilerCount.count++;
+    for (let i = 1; i <= limit; i++) {
+        genericReorderedProfilerCount.for++;
+        genericReorderedProfilerCount.div3++;
+        if (i % 3 === 0) {
+            genericReorderedProfilerCount.div51++;
+            if (i % 5 === 0) {
+                log("FizzBuzz");
+            } else {
+                log("Fizz");
+            }
+        } else {
+            genericReorderedProfilerCount.div52++;
+            if (i % 5 === 0) {
+                log("Buzz");
+            } else {
+                log(i);
+            }
+        }
     }
 };
 
@@ -126,9 +186,12 @@ const concatenateFizzBuzz = function() {
 };
 
 const results = [];
-suite.add('Generic', genericFizzBuzz)
+suite
+.add('Generic', genericFizzBuzz)
+.add('Generic Profiler', genericProfilerFizzBuzz)
 .add('Generic Variables', genericVarsFizzBuzz)
 .add('Generic Reordered', genericReorderedFizzBuzz)
+.add('Generic Reordered Profiling', genericReorderedFizzBuzzProfiling)
 .add('Incremental', incrementalFizzBuzz)
 .add('Bitwise', bitwiseFizzBuzz)
 .add('Concatenate', concatenateFizzBuzz)
@@ -138,6 +201,8 @@ suite.add('Generic', genericFizzBuzz)
 .on('complete', function() {
     results.forEach(function(result) {console.log(result);});
     console.log('Fastest is ' + this.filter('fastest').map('name'));
+    console.log('genericProfilerCount', genericProfilerCount);
+    console.log('genericReorderedProfilerCount', genericReorderedProfilerCount);
 })
 .run();
 
