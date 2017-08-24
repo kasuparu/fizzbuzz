@@ -5,17 +5,26 @@ const log = function (val) { val; };
 // const log = console.log;
 // const limit = 20;
 const limit = 1000000;
+const a = 3;
+const b = 5;
 
-const genericFizzBuzz = function() {
-    for (let i = 1; i <= limit; i++) {
-        if (i % 15 === 0)
-            log("FizzBuzz");
-        else if (i % 3 === 0)
-            log("Fizz");
-        else if (i % 5 === 0)
-            log("Buzz");
-        else
-            log(i);
+const genericFizzBuzz = function (num1, num2, max) {
+    const A = num1;
+    const B = num2;
+    const AB = num1 * num2;
+    const limit = max;
+
+    return function () {
+        for (let i = 1; i <= limit; i++) {
+            if (i % AB === 0)
+                log("FizzBuzz");
+            else if (i % A === 0)
+                log("Fizz");
+            else if (i % B === 0)
+                log("Buzz");
+            else
+                log(i);
+        }
     }
 };
 
@@ -216,7 +225,7 @@ const concatenateFizzBuzz = function() {
 
 const results = [];
 suite
-.add('Generic', genericFizzBuzz)
+.add('Generic', genericFizzBuzz(a, b, limit))
 .add('Generic Profiler', genericProfilerFizzBuzz)
 .add('Generic Variables', genericVarsFizzBuzz)
 .add('Generic Reordered', genericReorderedFizzBuzz)
@@ -235,7 +244,7 @@ suite
 })
 .run();
 
-// genericFizzBuzz();
+// genericFizzBuzz(a, b, limit)();
 // genericReorderedFizzBuzz();
 // cachedFizzBuzz();
 // incrementalFizzBuzz();
