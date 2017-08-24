@@ -165,6 +165,35 @@ const bitwiseFizzBuzz = function() {
     }
 };
 
+// With console.log
+// const bitwiseFizzBuzz = function() {
+//     let acc = 810092048;
+//     console.log('acc =', acc.toString(2));
+//     let number = 1;
+//     let a;
+//     let c;
+//
+//     while (number <= limit) {
+//         c = acc & 3;
+//         console.log('c =', c.toString(2));
+//         a = 'FizzBuzz';
+//         if (c === 0) {
+//             a = number;
+//         } else if (c === 1) {
+//             a = 'Fizz';
+//         } else if (c === 2) {
+//             a = 'Buzz';
+//         }
+//
+//         console.log('acc >> 2 =', (acc >> 2).toString(2));
+//         console.log('c << 28 =', (c << 28).toString(2));
+//         acc = acc >> 2 | c << 28;
+//         console.log('acc =', acc.toString(2));
+//         log(a);
+//         number++;
+//     }
+// };
+
 const concatenateFizzBuzz = function() {
     let output;
     for (let i = 1; i <= limit; i++) {
