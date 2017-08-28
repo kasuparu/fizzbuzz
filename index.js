@@ -110,6 +110,40 @@ const incrementalFizzBuzz = (num1, num2, max) => {
     };
 };
 
+const incrementalReorderedFizzBuzz = (num1, num2, max) => {
+    const A = num1;
+    const B = num2;
+    const limit = max;
+
+    const generateIndex = (divisor) => {
+        return {divisor, n: divisor};
+    };
+    const indexA = generateIndex(A);
+    const indexB = generateIndex(B);
+
+    const check = (index, n) => {
+        if (n !== index.n) {
+            return false;
+        }
+        index.n += index.divisor;
+        return true;
+    };
+
+    return () => {
+        for (let n = 1; n <= limit; n++) {
+            if (check(indexA, n))
+                if (check(indexB, n))
+                    log('FizzBuzz');
+                else
+                    log('Fizz');
+            else if (check(indexB, n))
+                log('Buzz');
+            else
+                log(n);
+        }
+    };
+};
+
 const concatenateFizzBuzz = (num1, num2, max) => {
     const A = num1;
     const B = num2;
@@ -141,6 +175,7 @@ suite
 .add('Generic Variables', genericVarsFizzBuzz(a, b, limit))
 .add('Generic Reordered', genericReorderedFizzBuzz(a, b, limit))
 .add('Incremental', incrementalFizzBuzz(a, b, limit))
+.add('Incremental Reordered', incrementalReorderedFizzBuzz(a, b, limit))
 .add('Concatenate', concatenateFizzBuzz(a, b, limit))
 .on('cycle', (event) => {
     console.log(String(event.target));
@@ -154,4 +189,5 @@ suite
 // genericVarsFizzBuzz(a, b, limit)();
 // genericReorderedFizzBuzz(a, b, limit)();
 // incrementalFizzBuzz(a, b, limit)();
+// incrementalReorderedFizzBuzz(a, b, limit)();
 // concatenateFizzBuzz(a, b, limit)();
