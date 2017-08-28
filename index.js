@@ -84,11 +84,11 @@ const incrementalFizzBuzz = (num1, num2, max) => {
     const indexB = generateIndex(B);
 
     const check = (index, n) => {
-        if (n === index.n) {
-            index.n += index.divisor;
-            return true;
+        if (n !== index.n) {
+            return false;
         }
-        return false;
+        index.n += index.divisor;
+        return true;
     };
 
     return () => {
