@@ -28,43 +28,6 @@ const genericFizzBuzz = (num1, num2, max) => {
     }
 };
 
-const genericProfilerCount = {
-    count: 0,
-    for: 0,
-    divAB: 0,
-    divA: 0,
-    divB: 0
-};
-const genericProfilerFizzBuzz = (num1, num2, max) => {
-    const A = num1;
-    const B = num2;
-    const AB = num1 * num2;
-    const limit = max;
-
-    return () => {
-        genericProfilerCount.count++;
-        for (let i = 1; i <= limit; i++) {
-            genericProfilerCount.for++;
-            genericProfilerCount.divAB++;
-            if (i % AB === 0) {
-                log('FizzBuzz');
-            } else {
-                genericProfilerCount.divA++;
-                if (i % A === 0) {
-                    log('Fizz');
-                } else {
-                    genericProfilerCount.divB++;
-                    if (i % B === 0) {
-                        log('Buzz');
-                    } else {
-                        log(i);
-                    }
-                }
-            }
-        }
-    };
-};
-
 const genericVarsFizzBuzz = (num1, num2, max) => {
     const A = num1;
     const B = num2;
@@ -104,42 +67,6 @@ const genericReorderedFizzBuzz = (num1, num2, max) => {
                 log('Buzz');
             else
                 log(i);
-        }
-    };
-};
-
-const genericReorderedProfilerCount = {
-    count: 0,
-    for: 0,
-    divA: 0,
-    divB1: 0,
-    divB2: 0
-};
-const genericReorderedFizzBuzzProfiling = (num1, num2, max) => {
-    const A = num1;
-    const B = num2;
-    const limit = max;
-
-    return () => {
-        genericReorderedProfilerCount.count++;
-        for (let i = 1; i <= limit; i++) {
-            genericReorderedProfilerCount.for++;
-            genericReorderedProfilerCount.divA++;
-            if (i % A === 0) {
-                genericReorderedProfilerCount.divB1++;
-                if (i % B === 0) {
-                    log('FizzBuzz');
-                } else {
-                    log('Fizz');
-                }
-            } else {
-                genericReorderedProfilerCount.divB2++;
-                if (i % B === 0) {
-                    log('Buzz');
-                } else {
-                    log(i);
-                }
-            }
         }
     };
 };
@@ -240,10 +167,8 @@ const concatenateFizzBuzz = (num1, num2, max) => {
 const results = [];
 suite
 .add('Generic', genericFizzBuzz(a, b, limit))
-.add('Generic Profiler', genericProfilerFizzBuzz(a, b, limit))
 .add('Generic Variables', genericVarsFizzBuzz(a, b, limit))
 .add('Generic Reordered', genericReorderedFizzBuzz(a, b, limit))
-.add('Generic Reordered Profiling', genericReorderedFizzBuzzProfiling(a, b, limit))
 .add('Incremental', incrementalFizzBuzz(a, b, limit))
 .add('Concatenate', concatenateFizzBuzz(a, b, limit))
 .on('cycle', (event) => {
@@ -252,13 +177,10 @@ suite
 .on('complete', function() {
     results.forEach((result) => {console.log(result);});
     console.log('Fastest is ' + this.filter('fastest').map('name'));
-    console.log('genericProfilerCount', genericProfilerCount);
-    console.log('genericReorderedProfilerCount', genericReorderedProfilerCount);
 })
 .run();
 
 // genericFizzBuzz(a, b, limit)();
-// genericProfilerFizzBuzz(a, b, limit)();
 // genericVarsFizzBuzz(a, b, limit)();
 // genericReorderedFizzBuzz(a, b, limit)();
 // incrementalFizzBuzz(a, b, limit)();
