@@ -17,11 +17,11 @@ const genericFizzBuzz = (num1, num2, max) => {
     return () => {
         for (let i = 1; i <= limit; i++) {
             if (i % AB === 0)
-                log("FizzBuzz");
+                log('FizzBuzz');
             else if (i % A === 0)
-                log("Fizz");
+                log('Fizz');
             else if (i % B === 0)
-                log("Buzz");
+                log('Buzz');
             else
                 log(i);
         }
@@ -41,15 +41,15 @@ const genericProfilerFizzBuzz = () => {
         genericProfilerCount.for++;
         genericProfilerCount.div15++;
         if (i % 15 === 0) {
-            log("FizzBuzz");
+            log('FizzBuzz');
         } else {
             genericProfilerCount.div3++;
             if (i % 3 === 0) {
-                log("Fizz");
+                log('Fizz');
             } else {
                 genericProfilerCount.div5++;
                 if (i % 5 === 0) {
-                    log("Buzz");
+                    log('Buzz');
                 } else {
                     log(i);
                 }
@@ -65,11 +65,11 @@ const genericVarsFizzBuzz = () => {
         div3 = i % 3 === 0;
         div5 = i % 5 === 0;
         if (div3 && div5)
-            log("FizzBuzz");
+            log('FizzBuzz');
         else if (div3)
-            log("Fizz");
+            log('Fizz');
         else if (div5)
-            log("Buzz");
+            log('Buzz');
         else
             log(i);
     }
@@ -79,11 +79,11 @@ const genericReorderedFizzBuzz = () => {
     for (let i = 1; i <= limit; i++) {
         if (i % 3 === 0)
             if (i % 5 === 0)
-                log("FizzBuzz");
+                log('FizzBuzz');
             else
-                log("Fizz");
+                log('Fizz');
         else if (i % 5 === 0)
-                log("Buzz");
+                log('Buzz');
         else
             log(i);
     }
@@ -104,14 +104,14 @@ const genericReorderedFizzBuzzProfiling = () => {
         if (i % 3 === 0) {
             genericReorderedProfilerCount.div51++;
             if (i % 5 === 0) {
-                log("FizzBuzz");
+                log('FizzBuzz');
             } else {
-                log("Fizz");
+                log('Fizz');
             }
         } else {
             genericReorderedProfilerCount.div52++;
             if (i % 5 === 0) {
-                log("Buzz");
+                log('Buzz');
             } else {
                 log(i);
             }
@@ -141,11 +141,11 @@ const incrementalFizzBuzz = () => {
         div3 = check(index3, n);
         div5 = check(index5, n);
         if (div3 && div5)
-            log("FizzBuzz");
+            log('FizzBuzz');
         else if (div3)
-            log("Fizz");
+            log('Fizz');
         else if (div5)
-            log("Buzz");
+            log('Buzz');
         else
             log(n);
     }
@@ -211,13 +211,13 @@ const concatenateFizzBuzz = (num1, num2, max) => {
     return () => {
         let output;
         for (let i = 1; i <= limit; i++) {
-            output = "";
+            output = '';
 
             if (i % A === 0) {
-                output += "Fizz";
+                output += 'Fizz';
             }
             if (i % B === 0) {
-                output += "Buzz";
+                output += 'Buzz';
             }
 
             if (output.length === 0) {
