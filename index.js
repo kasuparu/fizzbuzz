@@ -39,10 +39,11 @@ const genericVarsFizzBuzz = (num1, num2, max) => {
         for (let i = 1; i <= limit; i++) {
             divA = i % A === 0;
             divB = i % B === 0;
-            if (divA && divB)
-                log('FizzBuzz');
-            else if (divA)
-                log('Fizz');
+            if (divA)
+                if (divB)
+                    log('FizzBuzz');
+                else
+                    log('Fizz');
             else if (divB)
                 log('Buzz');
             else
@@ -135,7 +136,6 @@ const concatenateFizzBuzz = (num1, num2, max) => {
     };
 };
 
-const results = [];
 suite
 .add('Generic', genericFizzBuzz(a, b, limit))
 .add('Generic Variables', genericVarsFizzBuzz(a, b, limit))
@@ -143,10 +143,9 @@ suite
 .add('Incremental', incrementalFizzBuzz(a, b, limit))
 .add('Concatenate', concatenateFizzBuzz(a, b, limit))
 .on('cycle', (event) => {
-    results.push(String(event.target));
+    console.log(String(event.target));
 })
 .on('complete', function() {
-    results.forEach((result) => {console.log(result);});
     console.log('Fastest is ' + this.filter('fastest').map('name'));
 })
 .run();
