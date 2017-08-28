@@ -80,8 +80,6 @@ const incrementalFizzBuzz = (num1, num2, max) => {
     const generateIndex = (divisor) => {
         return {divisor, n: divisor};
     };
-    const indexA = generateIndex(A);
-    const indexB = generateIndex(B);
 
     const check = (index, n) => {
         if (n !== index.n) {
@@ -92,6 +90,8 @@ const incrementalFizzBuzz = (num1, num2, max) => {
     };
 
     return () => {
+        const indexA = generateIndex(A);
+        const indexB = generateIndex(B);
         let divA;
         let divB;
 
@@ -118,8 +118,6 @@ const incrementalReorderedFizzBuzz = (num1, num2, max) => {
     const generateIndex = (divisor) => {
         return {divisor, n: divisor};
     };
-    const indexA = generateIndex(A);
-    const indexB = generateIndex(B);
 
     const check = (index, n) => {
         if (n !== index.n) {
@@ -130,6 +128,9 @@ const incrementalReorderedFizzBuzz = (num1, num2, max) => {
     };
 
     return () => {
+        const indexA = generateIndex(A);
+        const indexB = generateIndex(B);
+
         for (let n = 1; n <= limit; n++) {
             if (check(indexA, n))
                 if (check(indexB, n))
@@ -137,6 +138,44 @@ const incrementalReorderedFizzBuzz = (num1, num2, max) => {
                 else
                     log('Fizz');
             else if (check(indexB, n))
+                log('Buzz');
+            else
+                log(n);
+        }
+    };
+};
+
+const incrementalReorderedOwnFizzBuzz = (num1, num2, max) => {
+    const A = num1;
+    const B = num2;
+    const limit = max;
+
+    class Index {
+        constructor(divisor) {
+            this.divisor = divisor;
+            this.n = divisor;
+        }
+
+        check(n) {
+            if (n !== this.n) {
+                return false;
+            }
+            this.n += this.divisor;
+            return true;
+        }
+    }
+
+    return () => {
+        const indexA = new Index(A);
+        const indexB = new Index(B);
+
+        for (let n = 1; n <= limit; n++) {
+            if (indexA.check(n))
+                if (indexB.check(n))
+                    log('FizzBuzz');
+                else
+                    log('Fizz');
+            else if (indexB.check(n))
                 log('Buzz');
             else
                 log(n);
@@ -176,6 +215,7 @@ suite
 .add('Generic Reordered', genericReorderedFizzBuzz(a, b, limit))
 .add('Incremental', incrementalFizzBuzz(a, b, limit))
 .add('Incremental Reordered', incrementalReorderedFizzBuzz(a, b, limit))
+.add('Incremental Reordered OwnMethods', incrementalReorderedOwnFizzBuzz(a, b, limit))
 .add('Concatenate', concatenateFizzBuzz(a, b, limit))
 .on('cycle', (event) => {
     console.log(String(event.target));
@@ -190,4 +230,5 @@ suite
 // genericReorderedFizzBuzz(a, b, limit)();
 // incrementalFizzBuzz(a, b, limit)();
 // incrementalReorderedFizzBuzz(a, b, limit)();
+// incrementalReorderedOwnFizzBuzz(a, b, limit)();
 // concatenateFizzBuzz(a, b, limit)();
