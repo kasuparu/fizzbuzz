@@ -1,12 +1,12 @@
 'use strict';
 const Benchmark = require('benchmark');
 const suite = new Benchmark.Suite();
-const log = (val) => { val; };
-// const log = console.log;
-// const limit = 20;
-const limit = 1000000;
 const a = 3;
 const b = 5;
+const log = (val) => { val; };
+// const log = console.log;
+const limit = 1000000;
+// const limit = 20;
 
 const genericFizzBuzz = (num1, num2, max) => {
     const A = num1;
