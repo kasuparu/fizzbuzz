@@ -53,6 +53,8 @@ const genericVarsFizzBuzz = (num1, num2, max) => {
 };
 
 const genericReorderedFizzBuzz = (num1, num2, max) => {
+    // Use a minimum amount of checks
+    // Do not assign/reassign the variables
     const A = num1;
     const B = num2;
     const limit = max;
@@ -73,6 +75,7 @@ const genericReorderedFizzBuzz = (num1, num2, max) => {
 };
 
 const incrementalFizzBuzz = (num1, num2, max) => {
+    // Use equality and increment instead of division
     const A = num1;
     const B = num2;
     const limit = max;
@@ -111,6 +114,8 @@ const incrementalFizzBuzz = (num1, num2, max) => {
 };
 
 const incrementalReorderedFizzBuzz = (num1, num2, max) => {
+    // Use a minimum amount of checks
+    // Use equality and increment instead of division
     const A = num1;
     const B = num2;
     const limit = max;
@@ -146,6 +151,9 @@ const incrementalReorderedFizzBuzz = (num1, num2, max) => {
 };
 
 const incrementalReorderedOwnFizzBuzz = (num1, num2, max) => {
+    // Use a minimum amount of checks
+    // Use equality and increment instead of division
+    // Use objects and properties instead of variables
     const A = num1;
     const B = num2;
     const limit = max;
@@ -184,6 +192,10 @@ const incrementalReorderedOwnFizzBuzz = (num1, num2, max) => {
 };
 
 const incrementalReorderedAllInlineFizzBuzz = (num1, num2, max) => {
+    // Use a minimum amount of checks
+    // Use equality and increment instead of division
+    // Use objects and properties instead of variables
+    // Avoid function calls
     const A = num1;
     const B = num2;
     const limit = max;
@@ -211,6 +223,12 @@ const incrementalReorderedAllInlineFizzBuzz = (num1, num2, max) => {
 };
 
 const incrementalReorderedAllInlineOneObjectFizzBuzz = (num1, num2, max) => {
+    // Do not assign/reassign the variables
+    // Use a minimum amount of checks
+    // Use equality and increment instead of division
+    // Use objects and properties instead of variables
+    // Avoid function calls
+    // Operate only with properties of one object
     const A = num1;
     const B = num2;
     const limit = max;
