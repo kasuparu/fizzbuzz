@@ -189,22 +189,23 @@ const incrementalReorderedAllInlineFizzBuzz = (num1, num2, max) => {
     const limit = max;
 
     return () => {
+        const i = {n: 1};
         const indexA = {n: A};
         const indexB = {n: B};
 
-        for (let n = 1; n <= limit; n++) {
-            if (indexA.n === n) {
+        for (; i.n <= limit; i.n++) {
+            if (indexA.n === i.n) {
                 indexA.n += A;
-                if (indexB.n === n) {
+                if (indexB.n === i.n) {
                     indexB.n += B;
                     log('FizzBuzz');
                 } else
                     log('Fizz');
-            } else if (indexB.n === n) {
+            } else if (indexB.n === i.n) {
                 indexB.n += B;
                 log('Buzz');
             } else
-                log(n);
+                log(i.n);
         }
     };
 };
