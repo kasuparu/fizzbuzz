@@ -280,6 +280,7 @@ const concatenateFizzBuzz = (num1, num2, max) => {
 };
 
 suite
+.add('Concatenate', concatenateFizzBuzz(a, b, limit))
 .add('Generic', genericFizzBuzz(a, b, limit))
 .add('Generic Variables', genericVarsFizzBuzz(a, b, limit))
 .add('Generic Reordered', genericReorderedFizzBuzz(a, b, limit))
@@ -288,7 +289,6 @@ suite
 .add('Incremental Reordered OwnMethods', incrementalReorderedOwnFizzBuzz(a, b, limit))
 .add('Incremental Reordered AllInline', incrementalReorderedAllInlineFizzBuzz(a, b, limit))
 .add('Incremental Reordered AllInline OneObject', incrementalReorderedAllInlineOneObjectFizzBuzz(a, b, limit))
-.add('Concatenate', concatenateFizzBuzz(a, b, limit))
 .on('cycle', (event) => {
     console.log(String(event.target));
 })
@@ -297,6 +297,7 @@ suite
 })
 .run();
 
+// concatenateFizzBuzz(a, b, limit)();
 // genericFizzBuzz(a, b, limit)();
 // genericVarsFizzBuzz(a, b, limit)();
 // genericReorderedFizzBuzz(a, b, limit)();
@@ -305,4 +306,3 @@ suite
 // incrementalReorderedOwnFizzBuzz(a, b, limit)();
 // incrementalReorderedAllInlineFizzBuzz(a, b, limit)();
 // incrementalReorderedAllInlineOneObjectFizzBuzz(a, b, limit)();
-// concatenateFizzBuzz(a, b, limit)();
