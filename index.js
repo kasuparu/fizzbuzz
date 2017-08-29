@@ -229,12 +229,8 @@ const incrementalReorderedAllInlineOneObjectFizzBuzz = (num1, num2, max) => {
     // Use objects and properties instead of variables
     // Avoid function calls
     // Operate only with properties of one object
-    const A = num1;
-    const B = num2;
-    const limit = max;
-
     return () => {
-        const stuff = {n: 1, indexA: A, indexB: B, A, B, limit};
+        const stuff = {n: 1, indexA: num1, indexB: num2, A: num1, B: num2, limit: max};
 
         for (; stuff.n <= stuff.limit; stuff.n++) {
             if (stuff.indexA === stuff.n) {
