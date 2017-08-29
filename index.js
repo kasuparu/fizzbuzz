@@ -210,6 +210,31 @@ const incrementalReorderedAllInlineFizzBuzz = (num1, num2, max) => {
     };
 };
 
+const incrementalReorderedAllInlineOneObjectFizzBuzz = (num1, num2, max) => {
+    const A = num1;
+    const B = num2;
+    const limit = max;
+
+    return () => {
+        const stuff = {n: 1, indexA: A, indexB: B, A, B, limit};
+
+        for (; stuff.n <= stuff.limit; stuff.n++) {
+            if (stuff.indexA === stuff.n) {
+                stuff.indexA += stuff.A;
+                if (stuff.indexB === stuff.n) {
+                    stuff.indexB += stuff.B;
+                    log('FizzBuzz');
+                } else
+                    log('Fizz');
+            } else if (stuff.indexB === stuff.n) {
+                stuff.indexB += stuff.B;
+                log('Buzz');
+            } else
+                log(stuff.n);
+        }
+    };
+};
+
 const concatenateFizzBuzz = (num1, num2, max) => {
     const A = num1;
     const B = num2;
@@ -244,6 +269,7 @@ suite
 .add('Incremental Reordered', incrementalReorderedFizzBuzz(a, b, limit))
 .add('Incremental Reordered OwnMethods', incrementalReorderedOwnFizzBuzz(a, b, limit))
 .add('Incremental Reordered AllInline', incrementalReorderedAllInlineFizzBuzz(a, b, limit))
+.add('Incremental Reordered AllInline OneObject', incrementalReorderedAllInlineOneObjectFizzBuzz(a, b, limit))
 .add('Concatenate', concatenateFizzBuzz(a, b, limit))
 .on('cycle', (event) => {
     console.log(String(event.target));
@@ -260,4 +286,5 @@ suite
 // incrementalReorderedFizzBuzz(a, b, limit)();
 // incrementalReorderedOwnFizzBuzz(a, b, limit)();
 // incrementalReorderedAllInlineFizzBuzz(a, b, limit)();
+// incrementalReorderedAllInlineOneObjectFizzBuzz(a, b, limit)();
 // concatenateFizzBuzz(a, b, limit)();
