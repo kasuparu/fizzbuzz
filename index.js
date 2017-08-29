@@ -3,7 +3,7 @@ const Benchmark = require('benchmark');
 const suite = new Benchmark.Suite();
 const a = 3;
 const b = 5;
-const log = (val) => { val; };
+const log = () => {};
 // const log = console.log;
 const limit = 1000000;
 // const limit = 20;
