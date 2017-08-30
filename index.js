@@ -249,6 +249,34 @@ const incrementalReorderedAllInlineOneObjectFizzBuzz = (num1, num2, max) => {
     };
 };
 
+const incrementalReorderedAllInlineOneArrayFizzBuzz = (num1, num2, max) => {
+    // Do not assign/reassign the variables
+    // Use a minimum amount of checks
+    // Use equality and increment instead of division
+    // Use objects and properties instead of variables
+    // Avoid function calls
+    // Use array access instead of object property access
+    return () => {
+        // Index: n = 0, indexA = 1, indexB = 2, A = 3, B = 4, limit = 5
+        const stuff = [1, num1, num2, num1, num2, max];
+
+        for (; stuff[0] <= stuff[5]; stuff[0]++) {
+            if (stuff[1] === stuff[0]) {
+                stuff[1] += stuff[3];
+                if (stuff[2] === stuff[0]) {
+                    stuff[2] += stuff[4];
+                    log('FizzBuzz');
+                } else
+                    log('Fizz');
+            } else if (stuff[2] === stuff[0]) {
+                stuff[2] += stuff[4];
+                log('Buzz');
+            } else
+                log(stuff[0]);
+        }
+    };
+};
+
 const concatenateFizzBuzz = (num1, num2, max) => {
     const A = num1;
     const B = num2;
@@ -285,6 +313,7 @@ suite
 .add('Incremental Reordered OwnMethods', incrementalReorderedOwnFizzBuzz(a, b, limit))
 .add('Incremental Reordered AllInline', incrementalReorderedAllInlineFizzBuzz(a, b, limit))
 .add('Incremental Reordered AllInline OneObject', incrementalReorderedAllInlineOneObjectFizzBuzz(a, b, limit))
+.add('Incremental Reordered AllInline OneArray', incrementalReorderedAllInlineOneArrayFizzBuzz(a, b, limit))
 .on('cycle', (event) => {
     console.log(String(event.target));
 })
@@ -302,3 +331,4 @@ suite
 // incrementalReorderedOwnFizzBuzz(a, b, limit)();
 // incrementalReorderedAllInlineFizzBuzz(a, b, limit)();
 // incrementalReorderedAllInlineOneObjectFizzBuzz(a, b, limit)();
+// incrementalReorderedAllInlineOneArrayFizzBuzz(a, b, limit)();
