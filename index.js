@@ -76,9 +76,34 @@ const concatenateFizzBuzz = (num1, num2, max) => {
     };
 };
 
+const donatasFizzBuzz = (num1, num2, max) => {
+    return () => {
+        let i = 0;
+        while (i < max) {
+            i++;
+            const isFizz = (i % num1) == 0;
+            const isBuzz = (i % num2) == 0;
+            if (isFizz && isBuzz) {
+                log('FizzBuzz');
+                continue;
+            }
+            if (isFizz) {
+                log('Fizz');
+                continue;
+            }
+            if (isBuzz) {
+                log('Buzz');
+                continue;
+            }
+            log(i);
+        }
+    }
+};
+
 suite
 .add('Concatenate', concatenateFizzBuzz(a, b, limit))
 .add('Generic', genericFizzBuzz(a, b, limit))
+.add('Donatas', donatasFizzBuzz(a, b, limit))
 .add('Generic Reordered OneObject', genericReorderedOneObjectFizzBuzz(a, b, limit))
 .on('cycle', (event) => {
     console.log(String(event.target));
