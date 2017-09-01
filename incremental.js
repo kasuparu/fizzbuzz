@@ -1,3 +1,7 @@
+'use strict';
+const log = () => {};
+// const log = console.log;
+
 const incrementalFizzBuzz = (num1, num2, max) => {
     // Use equality and increment instead of division
     const A = num1;
@@ -207,3 +211,7 @@ const incrementalReorderedAllInlineOneObjectFizzBuzz = (num1, num2, max) => {
 // incrementalReorderedAllInlineFizzBuzz(a, b, limit)();
 // incrementalReorderedAllInlineOneArrayFizzBuzz(a, b, limit)();
 // incrementalReorderedAllInlineOneObjectFizzBuzz(a, b, limit)();
+
+module.exports = {
+    incrementalReorderedAllInlineOneObjectFizzBuzz
+};

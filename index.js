@@ -1,4 +1,5 @@
 'use strict';
+const incremental = require('./incremental');
 const Benchmark = require('benchmark');
 const suite = new Benchmark.Suite();
 const a = 3;
