@@ -101,10 +101,43 @@ const donatasFizzBuzz = (num1, num2, max) => {
     }
 };
 
+const antonFizzBuzz = (num1, num2, max) => {
+    return () => {
+        let o = {
+            f: 0,
+            b: 0,
+            fb: 0,
+        };
+        let i = max;
+        const num3 = num1 * num2;
+        while (i > 0) {
+            i--;
+            o.f++;
+            o.b++;
+            o.fb++;
+            if (num3 === o.fb) {
+                o.f = 0;
+                o.b = 0;
+                o.fb = 0;
+                log('FizzBuzz');
+            } else if (num1 === o.f) {
+                o.f = 0;
+                log('Fizz');
+            } else if (num2 === o.b) {
+                o.b = 0;
+                log('Buzz');
+            } else {
+                log(max - i);
+            }
+        }
+    };
+};
+
 suite
 .add('Concatenate', concatenateFizzBuzz(a, b, limit))
 .add('Generic', genericFizzBuzz(a, b, limit))
 .add('Donatas', donatasFizzBuzz(a, b, limit))
+.add('Anton', antonFizzBuzz(a, b, limit))
 .add('Generic Reordered OneObject', genericReorderedOneObjectFizzBuzz(a, b, limit))
 .on('cycle', (event) => {
     console.log(String(event.target));
