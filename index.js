@@ -138,7 +138,7 @@ suite
 .add('Generic', genericFizzBuzz(a, b, limit))
 .add('Donatas', donatasFizzBuzz(a, b, limit))
 .add('Anton', antonFizzBuzz(a, b, limit))
-.add('Generic Reordered OneObject', genericReorderedOneObjectFizzBuzz(a, b, limit))
+.add('Vlad', genericReorderedOneObjectFizzBuzz(a, b, limit))
 .on('cycle', (event) => {
     console.log(String(event.target));
 })
