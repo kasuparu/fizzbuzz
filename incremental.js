@@ -186,21 +186,51 @@ const incrementalReorderedAllInlineOneObjectFizzBuzz = (num1, num2, max) => {
     // Avoid function calls
     // Operate only with properties of one object
     return () => {
-        const stuff = {n: 1, indexA: num1, indexB: num2, A: num1, B: num2, limit: max};
+        const stuff = {indexA: num1, indexB: num2, A: num1, B: num2, limit: max};
+        let n = 1;
 
-        for (; stuff.n <= stuff.limit; stuff.n++) {
-            if (stuff.indexA === stuff.n) {
+        for (; n <= stuff.limit; n++) {
+            if (stuff.indexA === n) {
                 stuff.indexA += stuff.A;
-                if (stuff.indexB === stuff.n) {
+                if (stuff.indexB === n) {
                     stuff.indexB += stuff.B;
                     log('FizzBuzz');
                 } else
                     log('Fizz');
-            } else if (stuff.indexB === stuff.n) {
+            } else if (stuff.indexB === n) {
                 stuff.indexB += stuff.B;
                 log('Buzz');
             } else
-                log(stuff.n);
+                log(n);
+        }
+    };
+};
+
+const incrementalReorderedAllInlineOneObjectWhileFizzBuzz = (num1, num2, max) => {
+    // Do not assign/reassign the variables
+    // Use a minimum amount of checks
+    // Use equality and increment instead of division
+    // Use objects and properties instead of variables
+    // Avoid function calls
+    // Operate only with properties of one object
+    return () => {
+        const stuff = {indexA: num1, indexB: num2, A: num1, B: num2, limit: max};
+        let n = 0;
+
+        while (n < stuff.limit) {
+            n++;
+            if (stuff.indexA === n) {
+                stuff.indexA += stuff.A;
+                if (stuff.indexB === n) {
+                    stuff.indexB += stuff.B;
+                    log('FizzBuzz');
+                } else
+                    log('Fizz');
+            } else if (stuff.indexB === n) {
+                stuff.indexB += stuff.B;
+                log('Buzz');
+            } else
+                log(n);
         }
     };
 };
@@ -211,7 +241,9 @@ const incrementalReorderedAllInlineOneObjectFizzBuzz = (num1, num2, max) => {
 // incrementalReorderedAllInlineFizzBuzz(a, b, limit)();
 // incrementalReorderedAllInlineOneArrayFizzBuzz(a, b, limit)();
 // incrementalReorderedAllInlineOneObjectFizzBuzz(a, b, limit)();
+// incrementalReorderedAllInlineOneObjectWhileFizzBuzz(3, 5, 20)();
 
 module.exports = {
-    incrementalReorderedAllInlineOneObjectFizzBuzz
+    incrementalReorderedAllInlineOneObjectFizzBuzz,
+    incrementalReorderedAllInlineOneObjectWhileFizzBuzz
 };
