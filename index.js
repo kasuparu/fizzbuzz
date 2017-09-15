@@ -107,15 +107,20 @@ const antonFizzBuzz = (num1, num2, max) => {
             f: 0,
             b: 0,
             fb: 0,
+            num3: 0,
         };
         let i = max;
-        const num3 = num1 * num2;
+        let j = num1;
+        while (j > 0) {
+            j--;
+            o.num3 += num2;
+        }
         while (i > 0) {
             i--;
             o.f++;
             o.b++;
             o.fb++;
-            if (num3 === o.fb) {
+            if (o.num3 === o.fb) {
                 o.f = 0;
                 o.b = 0;
                 o.fb = 0;
